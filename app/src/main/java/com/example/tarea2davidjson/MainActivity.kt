@@ -1,6 +1,7 @@
 package com.example.tarea2davidjson
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import org.json.JSONObject
@@ -62,5 +63,13 @@ class MainActivity : AppCompatActivity() {
 
     fun onActivarInformacion() {
         buttonInf.isEnabled = true
+    }
+    override fun onBackPressed() {
+        val builder = AlertDialog.Builder(this)
+        builder.setMessage("¿Seguro que quieres salir?")
+        builder.setCancelable(false).setPositiveButton("SI") { dialog, id -> this@MainActivity.finish()}
+        builder.setNegativeButton("NO") { dialog, id -> dialog.cancel() }
+        val alert = builder.create()
+        alert.show()
     }
 }
